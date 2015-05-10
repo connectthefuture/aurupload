@@ -2,6 +2,7 @@
 
 set -e
 
+config_file="$HOME/.config/aurupload.conf"
 declare -A categorys
 categorys[daemons]=2
 categorys[devel]=3
@@ -47,6 +48,8 @@ if [ $category = "errorerror" ]; then
   echo "Invalid category"
   exit 2
 fi
+
+[[ -e "$config_file" ]] && source "$config_file"
 
 if [[ $AUR_USERNAME == "" || $AUR_PASSWORD == "" ]]; then
   echo "You must provide username and password in ~/.config/aurupload.conf or AUR_USERNAME and AUR_PASSWORD environment variable" >&2
